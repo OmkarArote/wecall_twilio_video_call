@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.infocision.wecall"
     },
     "web": {
       "favicon": "./assets/logo.png"
