@@ -1,7 +1,7 @@
 # Twilio Video Call : React Native
-Requirments: Nodejs (LTS : 2021)
+Requirments: [Nodejs](https://nodejs.org/en/) (LTS : min 2021)  
 Twilio
-React native CLI [Installation](https://reactnative.dev/docs/environment-setup)
+React native CLI [(Installation)](https://reactnative.dev/docs/environment-setup)
 
 ## To run the project:
 cd "to the root folder of the project file"   
