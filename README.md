@@ -8,6 +8,7 @@ cd "to the root folder of the project file"
 npm install --save  
 npm install twilio  
 npm install react-native-twilio-video-webrtc  
+npm install react-native-vector-icons --save    
 npx react-native link   
 npx react-native start  
 
