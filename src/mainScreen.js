@@ -68,8 +68,7 @@ const MainTabScreen = () => (
               <Image
                 style={{ width: 40, height: 40,borderRadius:25,marginRight:5,marginTop:5}}
                 source={require('../assets/IMG-20210415-WA0017.jpg')}
-            />
-              )
+            />)
           }}/>
         <Stack.Screen name="Call_Analysis" component={Call_Analysis} options={{
             title:'Call Analysis',

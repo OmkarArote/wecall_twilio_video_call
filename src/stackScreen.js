@@ -1,10 +1,9 @@
 import React from 'react';
-
 import { createStackNavigator } from '@react-navigation/stack';
-
 import Login from './login';
 import Register from './register';
 import Forgot_Password from './Forgot_Password';
+import Call_Scheduler from './Call_Scheduler';
 
 const RootStack = createStackNavigator();
 

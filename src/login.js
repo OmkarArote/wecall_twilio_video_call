@@ -12,10 +12,39 @@ export default function Login({navigation}) {
     setData({
         secureTextEntry: !data.secureTextEntry
     });
-}
-    const { signIn } = React.useContext(AuthContext);
-  return (
-    
+  }
+  const [useremail, setEmail] = useState('');
+  const [userpass, setPass] = useState('');
+  const { signIn } = React.useContext(AuthContext);
+    const login = (useremail, userpass) =>{
+      var URL_LOGIN = 'https://wecall-api-infocicion.herokuapp.com/user';
+      fetch(URL_LOGIN, {
+        method: 'POST',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify({
+          user_email_address: useremail,
+          user_password: userpass
+        })      
+      })
+      .then(
+        function(response){
+          if (response.status == 201) {
+            console.log('Login Succesful')
+            navigation.navigate('Call_Scheduler')
+          }
+          else{
+            console.log('Login Unsuccesful')
+          }
+        }
+      )
+      .catch(function(err) {
+        console.log('Fetch Error', err);
+      });
+    }
+    return (
     <View style={styles.mainContainer}>
       <Text style={{color:'#d40000',fontWeight:'bold',fontSize:27,paddingTop:30}}>SIGN IN</Text>
       <View style={styles.container}>
@@ -28,6 +57,7 @@ export default function Login({navigation}) {
                 name="envelope-o"
                 color="#666666"
                 size={20}
+                style={{marginTop:11}}
             />
             <TextInput 
                 placeholder="Email Address"
@@ -36,15 +66,16 @@ export default function Login({navigation}) {
                     color:"#000"
                 }]}
                 autoCapitalize="none"
-                
+                onChangeText = {useremail => setEmail(useremail)}
             />
         </Animatable.View>
         <Animatable.View style={[styles.action,{
-                marginTop: 35}]} animation="fadeInUpBig">
+                marginTop: 27}]} animation="fadeInUpBig">
             <Icon 
                 name="key"
                 color="#666666"
                 size={20}
+                style={{marginTop:12}}
             />
             <TextInput 
                 placeholder="Password"
@@ -53,6 +84,7 @@ export default function Login({navigation}) {
                     color:"#000"
                 }]}
                 autoCapitalize="none"
+                onChangeText = {userpass => setPass(userpass)}
                 secureTextEntry={data.secureTextEntry ? true : false}             
             />
             <TouchableOpacity onPress={updateSecureTextEntry}>
@@ -61,21 +93,24 @@ export default function Login({navigation}) {
                         name="eye-off"
                         color="grey"
                         size={20}
+                        style={{marginTop:13}}
                     />
                     :                    
                     <Feather 
                         name="eye"
                         color="grey"
                         size={20}
+                        style={{marginTop:13}}
                     />
-                    
                     }
             </TouchableOpacity>
         </Animatable.View>
         </View>
-        <Animatable.View animation="fadeInUpBig"><TouchableOpacity style={styles.button} onPress={() => {signIn()}}>
-          <Text style={styles.buttonText}>SIGN IN</Text>
-        </TouchableOpacity></Animatable.View>
+        <Animatable.View animation="fadeInUpBig">
+          <TouchableOpacity style={styles.button} onPress={() => login(useremail, userpass)}>
+            <Text style={styles.buttonText}>LOG IN</Text>
+          </TouchableOpacity>
+        </Animatable.View>
         <Animatable.View animation="fadeInUpBig" style={styles.hyperLinkText}>
           <TouchableOpacity >
               <Text style={styles.hyperLink} onPress={() => navigation.navigate('Forgot_Password')}>Forgot Password?</Text>
@@ -156,7 +191,7 @@ const styles = StyleSheet.create({
       fontSize:14,
   },
   infocisionLogoContainer:{
-    marginTop:59,
+    marginTop:60,
     alignItems:'center',
   },
   infocisionLogo:{
