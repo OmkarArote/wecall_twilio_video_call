@@ -21,8 +21,8 @@ export default function Login({navigation}) {
       fetch(URL_LOGIN, {
         method: 'POST',
         headers:{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json', 
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic '+btoa('admin:admin')
         },
         body: JSON.stringify({
           user_email_address: useremail,
@@ -31,9 +31,9 @@ export default function Login({navigation}) {
       })
       .then(
         function(response){
-          if (response.status == 201) {
+          if (response.status == 200) {
             console.log('Login Succesful')
-            navigation.navigate('Call_Scheduler')
+            signIn()
           }
           else{
             console.log('Login Unsuccesful')
