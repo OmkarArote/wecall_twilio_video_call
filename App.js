@@ -9,6 +9,7 @@ import RootStackScreen from "./src/stackScreen";
 import { DrawerContent } from './src/DrawerContent';
 import { AuthContext } from './src/context';
 import MainTabScreen from './src/mainScreen';
+import FlashMessage from "react-native-flash-message";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -41,7 +42,6 @@ const App = () => {
     }, 1000);
   }, []);
   return (
-    
     <View style={styles.mainContainer}>
       <AuthContext.Provider value={authContext}>
         <NavigationContainer>
@@ -56,6 +56,7 @@ const App = () => {
         </NavigationContainer>
       </AuthContext.Provider>
       <StatusBar style="auto" />
+      <FlashMessage position="top" />
     </View>
   );
 }

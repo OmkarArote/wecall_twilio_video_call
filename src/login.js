@@ -6,6 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import { AuthContext } from './context';
 import * as Animatable from 'react-native-animatable';
 import Toast from 'react-native-simple-toast';
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 export default function Login({navigation}) {
   const [data, setData] =  React.useState({
@@ -72,11 +73,23 @@ export default function Login({navigation}) {
         if (response.status == 200) {
           Toast.show('Login Successful', Toast.LONG);
           console.log('Login Successful')
+          showMessage({
+            message: "Login Successful",
+            description: "Welcome To WeCall",
+            type: "success",
+            icon: "auto"
+          });
           signIn()
         }
         else{
           Toast.show('User Email or Password is Incorrect', Toast.LONG);
           console.log('Login Unsuccessful')
+          showMessage({
+            message: "Login Unsuccessful",
+            description: "Please check your email and password and try again",
+            type: "danger",
+            icon: "auto"
+          });
         }
       }
     )

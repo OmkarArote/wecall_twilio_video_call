@@ -31,7 +31,6 @@ const HeaderLeft = () => {
     );
   };
 const Stack = createStackNavigator();
-
 const MainTabScreen = () => (
     <Stack.Navigator screenOptions={{
         headerStyle:{
