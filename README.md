@@ -14,6 +14,3 @@ npx react-native start
 
 ### On a new terminal:
 npx react-native run-android
-
-# Token Generation 
-http://olaser2a.pythonanywhere.com/token/
