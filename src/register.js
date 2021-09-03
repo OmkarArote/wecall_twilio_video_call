@@ -48,6 +48,7 @@ export default function Register({navigation}) {
             sales_rep_designation : userdec,
             sales_rep_full_name : username,
             sales_rep_hq : userorg,
+            user_password : userpass,
             sales_rep_status : "Active"
         })      
         })
@@ -376,6 +377,6 @@ const styles = StyleSheet.create({
       color: '#05375a',
   },
   Scroll:{
-      height: 780
+      height: 755
   }
 });
