@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState ,useEffect} from 'react';
-import { StyleSheet, Text, View,Image,TouchableOpacity,TextInput } from 'react-native';
+import { StyleSheet, Text, View,Image,TouchableOpacity,TextInput, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { AuthContext } from './context';
@@ -14,6 +14,7 @@ export default function Login({navigation}) {
     secureTextEntry: true,
     isValidUser: true,
     isValidPassword: true,
+    isLoading: false
   });
   const [useremail, setEmail] = useState('');
   const [userpass, setPass] = useState('');
@@ -54,6 +55,10 @@ export default function Login({navigation}) {
   }
   const { signIn } = React.useContext(AuthContext);
   const login = (useremail, userpass) =>{
+    setData({
+      ...data,
+      isLoading: true
+    });
     console.log("Final Entered Email: "+useremail)
     console.log("Final Entered Password: "+userpass)
     var URL_LOGIN = 'https://wecall-api-infocicion.herokuapp.com/user';
@@ -89,6 +94,10 @@ export default function Login({navigation}) {
             description: "Please check your email and password and try again",
             type: "danger",
             icon: "auto"
+          });
+          setData({
+            ...data,
+            isLoading: false
           });
         }
       }
@@ -173,7 +182,10 @@ export default function Login({navigation}) {
       </View>
       <Animatable.View animation="fadeInUpBig">
         <TouchableOpacity style={styles.button} onPress={() => login(useremail, userpass)}>
-          <Text style={styles.buttonText}>LOG IN</Text>
+          {data.isLoading?
+            <ActivityIndicator animating={data.isLoading} color={"white"}/>
+            : <Text style={styles.buttonText}>LOG IN</Text>
+          }
         </TouchableOpacity>
       </Animatable.View>
       <Animatable.View animation="fadeInUpBig" style={styles.hyperLinkText}>

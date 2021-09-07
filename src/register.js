@@ -47,7 +47,7 @@ export default function Register({navigation}) {
             sales_rep_mobile_no : usermob,
             sales_rep_designation : userdec,
             sales_rep_full_name : username,
-            sales_rep_hq : userorg,
+            sales_rep_hq : usercity,
             user_password : userpass,
             sales_rep_status : "Active"
         })      
@@ -55,10 +55,10 @@ export default function Register({navigation}) {
         .then(
             function(response){
                 if (response.status == 201) {
-                    Toast.show('Login Successful', Toast.LONG);
-                    console.log('Login Successful')
+                    Toast.show('Registration Successful', Toast.LONG);
+                    console.log('Registration Successful')
                     showMessage({
-                        message: "Login Successful",
+                        message: "Registration Successful",
                         description: "Welcome To WeCall",
                         type: "success",
                         icon: "auto"
